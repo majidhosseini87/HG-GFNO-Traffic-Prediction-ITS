@@ -1,3 +1,9 @@
+لازم نیست *همه* بخش‌هایی که نوشتم را حتماً بگذاری؛ ولی چون این کدها برای یک **مقاله** هستند، هرچه README کامل‌تر باشد (روش، نصب، داده، نحوه اجرا، بازتولید نتایج، استناد)، ریپو حرفه‌ای‌تر و قابل‌استفاده‌تر می‌شود.
+اگر می‌خواهی، همین نسخه‌ی **کامل** را یک‌جا می‌دهم تا مستقیم کپی‌پیست کنی (می‌توانی بعداً بخش‌های اضافی را حذف کنی).
+
+> این متن را می‌توانی به‌عنوان `README.md` (پیشنهادی) یا `markdown.md` ذخیره کنی.
+
+````markdown
 # HG-GFNO Traffic Forecasting (PeMS) — Research Code
 
 This repository contains the research implementation for the paper:
@@ -104,3 +110,198 @@ Current project layout:
 │   └── utils.py
 ├── run.py
 └── run_all.py
+````
+
+---
+
+## Installation
+
+### Environment
+
+Recommended: Python 3.9+ (tested with 3.10)
+
+Example using conda:
+
+```bash
+conda create -n hggfno python=3.10 -y
+conda activate hggfno
+```
+
+### Dependencies
+
+If you provide a `requirements.txt`:
+
+```bash
+pip install -r requirements.txt
+```
+
+Minimal starting point (adjust as needed):
+
+```bash
+pip install numpy torch matplotlib tensorboardX
+```
+
+> GPU training is recommended.
+
+---
+
+## Datasets
+
+We evaluate on four standard traffic benchmarks collected from **Caltrans PeMS**:
+
+* **PEMS03, PEMS04, PEMS07, PEMS08**
+
+PeMS portal:
+
+* [https://pems.dot.ca.gov/](https://pems.dot.ca.gov/)
+
+Common protocol:
+
+* Train/Val/Test split: **60% / 20% / 20%**
+* Z-score normalization using **train statistics only**
+* Missing values: forward fill + backward fill
+
+### Data Files
+
+This repo expects dataset folders under `data/` (see structure above).
+If you do **NOT** want to push the datasets to GitHub (recommended for large files), add them to `.gitignore` and provide download/prep instructions in `data/README.md`.
+
+---
+
+## Configuration Files
+
+All experiments are controlled via `.conf` files in `configurations/`.
+
+Each config typically includes:
+
+* `[Data]`: dataset paths, graph adjacency path, horizon, input length, etc.
+* `[Training]`: learning rate, epochs, batch size, model dims, scheduler, early stopping, etc.
+
+> Please check the existing `.conf` templates in `configurations/` and edit paths if necessary.
+
+---
+
+## Training & Evaluation
+
+### 1) Train/Evaluate one dataset configuration
+
+`run.py` supports a `--config` argument (default: `configurations/PEMS08_mgcn.conf`):
+
+```bash
+python run.py --config configurations/PEMS08_mgcn.conf
+```
+
+### 2) Run the multi-horizon suite
+
+`run_all.py` runs multiple horizons by generating temporary configs and executing `run.py`.
+
+```bash
+python run_all.py
+```
+
+---
+
+## Reproducibility
+
+To reproduce paper-level results:
+
+* Keep preprocessing/splits consistent across runs
+* Fix random seeds (Python/NumPy/PyTorch)
+* Log the exact config used for each run
+* Use the same horizon settings reported in the paper (e.g., 12/24/48/96)
+
+Typical (paper) settings include:
+
+* Input sequence length: **192**
+* GCN order (K): **2**
+* Dropout: **0.15**
+* Optimizer: **Adam**
+* Loss: **MAE**
+* Cosine annealing schedule + warmup
+* Early stopping patience: **20**
+
+> Map these settings to the appropriate fields in your `.conf` files.
+
+---
+
+## Outputs & Logging
+
+Experiments are stored under:
+
+```text
+experiments/<DATASET>/predict<PRED_LEN>_MGCN_<YYYYMMDD_HHMMSS>/
+```
+
+Typical contents:
+
+* training logs (text)
+* TensorBoard logs
+* checkpoints (`ckpt_best.params`, `epoch_*.params`, etc.)
+
+### TensorBoard
+
+```bash
+tensorboard --logdir experiments
+```
+
+---
+
+## Results
+
+After running experiments, you may include:
+
+* Main tables for MAE/RMSE on each dataset & horizon
+* Training curves and stability plots
+* Efficiency plots (speed/params)
+
+Suggested place for figures:
+
+* `assets/`
+
+Example:
+
+```markdown
+![Validation Curves](assets/val_curves.png)
+```
+
+---
+
+## Citation
+
+If you use this repository in academic work, please cite the paper:
+
+```bibtex
+@article{hosseini_hg_gfno_traffic,
+  title   = {Integrated Spatio-Temporal Modeling with Hybrid Graph Convolutions and the Graph Fourier Neural Operator for Traffic Prediction},
+  author  = {Hosseini, Seyed-Majid and Rahmatinia, S. Mozhgan and Hosseini-Seno, Seyed-Amin},
+  journal = {Under review / To appear},
+  year    = {2026}
+}
+```
+
+---
+
+## License
+
+Add your preferred license (MIT / Apache-2.0) as `LICENSE`.
+
+---
+
+## Contact
+
+For questions or collaborations:
+
+* Name: **Seyed-Majid Hosseini**
+* Email: **(add your email here)**
+
+---
+
+## Acknowledgements
+
+* Sequence-as-Token representation is inspired by iTransformer-style tokenization ideas.
+* Thanks to the spatio-temporal forecasting community for benchmarks and strong baselines.
+
+```
+
+اگر دوست داری، همین الان بگو **آیا دیتا را داخل GitHub می‌گذاری یا نه**؛ اگر نه، من یک `data/README.md` انگلیسی هم می‌نویسم که دقیقاً توضیح دهد کاربر چطور دیتا را دانلود کند و کجا قرار دهد.
+```
