@@ -1,5 +1,4 @@
 
-````markdown
 # HG-GFNO Traffic Forecasting (PeMS) — Research Code
 
 This repository contains the research implementation for the paper:
