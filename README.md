@@ -239,12 +239,14 @@ Example:
 If you use this repository in academic work, please cite the paper:
 
 ```bibtex
-@article{hosseini_hg_gfno_traffic,
+@article{hosseini_hg_gfno_traffic_2026,
   title   = {Integrated Spatio-Temporal Modeling with Hybrid Graph Convolutions and the Graph Fourier Neural Operator for Traffic Prediction},
   author  = {Hosseini, Seyed-Majid and Rahmatinia, S. Mozhgan and Hosseini-Seno, Seyed-Amin},
-  journal = {Under review / To appear},
-  year    = {2026}
+  journal = {Scientific Reports},
+  year    = {2026},
+  note    = {Accepted for publication}
 }
+
 ```
 
 ---
