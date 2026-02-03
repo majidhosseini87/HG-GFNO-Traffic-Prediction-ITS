@@ -61,15 +61,10 @@ HG-GFNO follows an end-to-end pipeline:
    - Residual/LayerNorm + final projection to the forecasting horizon
 
 ### Architecture Figure
-Create an `assets/` folder and place the main architecture diagram as:
 
-- `assets/architecture.png`
-
-Then it will render here:
 
 ![HG-GFNO Architecture](architecture.png)
 
-> Tip: Export the main model figure from the paper and save it with the name above.
 
 
 ---
@@ -158,7 +153,7 @@ Each config typically includes:
 
 ### 1) Train/Evaluate one dataset configuration
 
-`run.py` supports a `--config` argument (default: `configurations/PEMS08_mgcn.conf`):
+`run.py` supports a `--config` argument (default: `configurations/PEMS08.conf`):
 
 ```bash
 python run.py --config configurations/PEMS08_mgcn.conf
