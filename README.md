@@ -67,7 +67,7 @@ Create an `assets/` folder and place the main architecture diagram as:
 
 Then it will render here:
 
-![HG-GFNO Architecture](assets/architecture.png)
+![HG-GFNO Architecture](architecture.png)
 
 > Tip: Export the main model figure from the paper and save it with the name above.
 
