@@ -15,7 +15,6 @@ HG-GFNO (**H**ybrid **G**raph Convolutions + **G**raph **F**ourier **N**eural **
 ## Table of Contents
 - [Highlights](#highlights)
 - [Method Overview](#method-overview)
-- [Repository Structure](#repository-structure)
 - [Installation](#installation)
 - [Datasets](#datasets)
 - [Configuration Files](#configuration-files)
@@ -72,39 +71,6 @@ Then it will render here:
 
 > Tip: Export the main model figure from the paper and save it with the name above.
 
----
-
-## Repository Structure
-
-Current project layout:
-
-```text
-.
-├── configurations/
-│   ├── PEMS03_mgcn.conf
-│   ├── PEMS04_mgcn.conf
-│   ├── PEMS07_mgcn.conf
-│   └── PEMS08_mgcn.conf
-├── data/
-│   ├── PEMS03/ (PEMS03.csv, PEMS03.npz)
-│   ├── PEMS04/ (PEMS04.csv, PEMS04.npz)
-│   ├── PEMS07/ (PEMS07.csv, PEMS07.npz)
-│   ├── PEMS08/ (PEMS08.csv, PEMS08.npz)
-│   └── README.md
-├── data_provider/
-│   ├── data_factory.py
-│   ├── data_loader.py
-│   └── __init__.py
-├── lib/
-│   ├── metrics.py
-│   └── utils.py
-├── model/
-│   ├── layers.py
-│   ├── models.py
-│   └── utils.py
-├── run.py
-└── run_all.py
-````
 
 ---
 
@@ -157,9 +123,22 @@ Common protocol:
 
 ### Data Files
 
-This repo expects dataset folders under `data/` (see structure above).
-If you do **NOT** want to push the datasets to GitHub (recommended for large files), add them to `.gitignore` and provide download/prep instructions in `data/README.md`.
 
+This repo expects dataset folders under `data/` (see structure above).
+
+#### Download (Google Drive mirror)
+Download the dataset archive from:
+
+- Google Drive: [https://drive.google.com/file/d/1RR0r2yGiWG8h6depT3SBiRsGB4hWb9Hr/view?usp=sharing](https://drive.google.com/file/d/1RR0r2yGiWG8h6depT3SBiRsGB4hWb9Hr/view?usp=sharing)
+
+Then extract it so the folder structure looks like:
+
+```text
+data/
+  PEMS03/
+  PEMS04/
+  PEMS07/
+  PEMS08/
 ---
 
 ## Configuration Files
@@ -288,12 +267,7 @@ For questions or collaborations:
 * Name: **Seyed-Majid Hosseini**
 * Email: **(add your email here)**
 
----
 
-## Acknowledgements
-
-* Sequence-as-Token representation is inspired by iTransformer-style tokenization ideas.
-* Thanks to the spatio-temporal forecasting community for benchmarks and strong baselines.
 
 ```
 
