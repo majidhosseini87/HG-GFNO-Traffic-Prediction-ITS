@@ -260,9 +260,7 @@ Add your preferred license (MIT / Apache-2.0) as `LICENSE`.
 For questions or collaborations:
 
 * Name: **Seyed-Majid Hosseini**
-* Email: **(add your email here)**
-
-
+* Email: **hosseini.seyedmajid@mail.um.ac.ir**
 
 ```
 
