@@ -262,7 +262,3 @@ For questions or collaborations:
 * Name: **Seyed-Majid Hosseini**
 * Email: **hosseini.seyedmajid@mail.um.ac.ir**
 
-```
-
-اگر دوست داری، همین الان بگو **آیا دیتا را داخل GitHub می‌گذاری یا نه**؛ اگر نه، من یک `data/README.md` انگلیسی هم می‌نویسم که دقیقاً توضیح دهد کاربر چطور دیتا را دانلود کند و کجا قرار دهد.
-```
