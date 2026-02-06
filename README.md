@@ -282,7 +282,6 @@ Table 5 compares our model with **Transformer-based** baselines, while Table 6 c
       <td align="center">43.2</td><td align="center">29.1</td>
       <td align="center">39.0</td><td align="center">24.7</td>
     </tr>
-
     <tr>
       <td rowspan="5" align="center">PEMS<br>04</td>
       <td align="center">12</td>
@@ -324,7 +323,6 @@ Table 5 compares our model with **Transformer-based** baselines, while Table 6 c
       <td align="center">54.7</td><td align="center">37.5</td>
       <td align="center">44.3</td><td align="center">29.0</td>
     </tr>
-
     <tr>
       <td rowspan="5" align="center">PEMS<br>07</td>
       <td align="center">12</td>
@@ -366,7 +364,6 @@ Table 5 compares our model with **Transformer-based** baselines, while Table 6 c
       <td align="center">55.2</td><td align="center">37.0</td>
       <td align="center">50.7</td><td align="center">33.6</td>
     </tr>
-
     <tr>
       <td rowspan="5" align="center">PEMS<br>08</td>
       <td align="center">12</td>
@@ -410,7 +407,6 @@ Table 5 compares our model with **Transformer-based** baselines, while Table 6 c
     </tr>
   </tbody>
 </table>
-
 <div align="center"><b>Table 5. Performance comparison among Transformer-based models</b></div>
 
 <br>
@@ -476,7 +472,6 @@ Table 5 compares our model with **Transformer-based** baselines, while Table 6 c
       <td align="center">37.2</td><td align="center">23.7</td>
       <td align="center">35.7</td><td align="center">21.1</td>
     </tr>
-
     <tr>
       <td rowspan="5" align="center">PEMS<br>04</td>
       <td align="center">12</td>
@@ -518,7 +513,6 @@ Table 5 compares our model with **Transformer-based** baselines, while Table 6 c
       <td align="center">49.0</td><td align="center">31.4</td>
       <td align="center">35.8</td><td align="center">22.5</td>
     </tr>
-
     <tr>
       <td rowspan="5" align="center">PEMS<br>07</td>
       <td align="center">12</td>
@@ -560,7 +554,6 @@ Table 5 compares our model with **Transformer-based** baselines, while Table 6 c
       <td align="center">51.0</td><td align="center">32.1</td>
       <td align="center">41.0</td><td align="center">25.6</td>
     </tr>
-
     <tr>
       <td rowspan="5" align="center">PEMS<br>08</td>
       <td align="center">12</td>
@@ -604,7 +597,6 @@ Table 5 compares our model with **Transformer-based** baselines, while Table 6 c
     </tr>
   </tbody>
 </table>
-
 <div align="center"><b>Table 6. Performance comparison among Non-Transformer baselines (Linear, State Space, and Graph-based models)</b></div>
 
 ---
