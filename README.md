@@ -197,7 +197,7 @@ Typical (paper) settings include:
 Experiments are stored under:
 
 ```text
-experiments/<DATASET>/predict<PRED_LEN><YYYYMMDD_HHMMSS>/
+experiments/<DATASET>/predict<PRED_LEN>_<YYYYMMDD_HHMMSS>/
 ```
 
 Typical contents:
