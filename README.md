@@ -156,7 +156,7 @@ Each config typically includes:
 `run.py` supports a `--config` argument (default: `configurations/PEMS08.conf`):
 
 ```bash
-python run.py --config configurations/PEMS08_mgcn.conf
+python run.py --config configurations/PEMS08.conf
 ```
 
 ### 2) Run the multi-horizon suite
@@ -197,7 +197,7 @@ Typical (paper) settings include:
 Experiments are stored under:
 
 ```text
-experiments/<DATASET>/predict<PRED_LEN>_MGCN_<YYYYMMDD_HHMMSS>/
+experiments/<DATASET>/predict<PRED_LEN><YYYYMMDD_HHMMSS>/
 ```
 
 Typical contents:
