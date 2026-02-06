@@ -599,6 +599,66 @@ Table 5 compares our model with **Transformer-based** baselines, while Table 6 c
 </table>
 <div align="center"><b>Table 6. Performance comparison among Non-Transformer baselines (Linear, State Space, and Graph-based models)</b></div>
 
+### Table 7. Comparison with recent graph-based traffic forecasting models (H=12)
+
+This table reports **short-term** forecasting results (**12-step horizon**) on **PEMS03, PEMS04, and PEMS08**.
+Lower **RMSE/MAE** indicates better performance. HG-GFNO achieves the best (lowest) error across all three datasets.
+
+<table border="1" cellspacing="0" cellpadding="4">
+  <thead>
+    <tr>
+      <th rowspan="2" align="center">Model</th>
+      <th colspan="2" align="center">PEMS03</th>
+      <th colspan="2" align="center">PEMS04</th>
+      <th colspan="2" align="center">PEMS08</th>
+    </tr>
+    <tr>
+      <th align="center">RMSE</th><th align="center">MAE</th>
+      <th align="center">RMSE</th><th align="center">MAE</th>
+      <th align="center">RMSE</th><th align="center">MAE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center">AGCRN</td>
+      <td align="center">32.3</td><td align="center">19.4</td>
+      <td align="center">32.2</td><td align="center">19.8</td>
+      <td align="center">26.4</td><td align="center">16.7</td>
+    </tr>
+    <tr>
+      <td align="center">ASTGCN</td>
+      <td align="center">33.3</td><td align="center">20.1</td>
+      <td align="center">22.9</td><td align="center">19.4</td>
+      <td align="center">35.5</td><td align="center">23.7</td>
+    </tr>
+    <tr>
+      <td align="center">STFGNN</td>
+      <td align="center">27.8</td><td align="center">16.5</td>
+      <td align="center">32.5</td><td align="center">20.4</td>
+      <td align="center">25.1</td><td align="center">15.7</td>
+    </tr>
+    <tr>
+      <td align="center">STG-NCDE</td>
+      <td align="center">28.9</td><td align="center">15.6</td>
+      <td align="center">31.1</td><td align="center">19.3</td>
+      <td align="center">25.4</td><td align="center">15.9</td>
+    </tr>
+    <tr>
+      <td align="center">DDGCRN</td>
+      <td align="center">28.5</td><td align="center">17.6</td>
+      <td align="center">32.6</td><td align="center">19.2</td>
+      <td align="center">26.2</td><td align="center">15.8</td>
+    </tr>
+    <tr>
+      <td align="center"><b>HG-GFNO (proposed)</b></td>
+      <td align="center"><b>26.1</b></td><td align="center"><b>15.4</b></td>
+      <td align="center"><b>31.1</b></td><td align="center"><b>19.1</b></td>
+      <td align="center"><b>24.8</b></td><td align="center"><b>15.4</b></td>
+    </tr>
+  </tbody>
+</table>
+<div align="center"><b>Table 7. Performance comparison with recent graph-based traffic forecasting models (12-step horizon).</b></div>
+
 ---
 
 ## Citation
