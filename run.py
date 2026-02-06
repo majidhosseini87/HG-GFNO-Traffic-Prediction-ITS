@@ -136,7 +136,7 @@ def train_main(args):
     print(f"CUDA={torch.cuda.is_available()}  device={DEVICE}")
 
     # ---------- Experiment output directory ----------
-    save_dir = os.path.join('experiments', dataset, f'predict{pred_len}_MGCN_{time.strftime("%Y%m%d_%H%M%S")}')
+    save_dir = os.path.join('experiments', dataset, f'predict{pred_len}_{time.strftime("%Y%m%d_%H%M%S")}')
     if os.path.exists(save_dir):
         shutil.rmtree(save_dir)
     os.makedirs(save_dir, exist_ok=True)
