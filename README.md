@@ -216,59 +216,396 @@ tensorboard --logdir experiments
 
 ## Results
 
-We report **MAE** and **RMSE** (lower is better) on **PEMS03/04/07/08** across four forecasting horizons (**12, 24, 48, 96** steps).
-Table 5 compares HG-GFNO with **Transformer-based** baselines, and Table 6 compares with **Non-Transformer** baselines.
+We report forecasting accuracy using **RMSE** and **MAE** on four PeMS datasets (PEMS03/04/07/08) over
+four horizons (**12, 24, 48, 96** steps). **Avg** denotes the average across horizons.
+Table 5 compares our model with **Transformer-based** baselines, while Table 6 compares against
+**Non-Transformer** baselines (Linear, State Space, and Graph-based models).
 
-### Table 5. Performance comparison among Transformer-based models
+<table border="1" cellspacing="0" cellpadding="4">
+  <thead>
+    <tr>
+      <th rowspan="2" align="center">Dataset</th>
+      <th rowspan="2" align="center">Metric</th>
+      <th colspan="2" align="center">HG-GFNO (proposed model)</th>
+      <th colspan="2" align="center">Informer (2021)</th>
+      <th colspan="2" align="center">Autoformer (2021)</th>
+      <th colspan="2" align="center">FEDformer (2022)</th>
+      <th colspan="2" align="center">iTransformer (2023)</th>
+    </tr>
+    <tr>
+      <th align="center">RMSE</th><th align="center">MAE</th>
+      <th align="center">RMSE</th><th align="center">MAE</th>
+      <th align="center">RMSE</th><th align="center">MAE</th>
+      <th align="center">RMSE</th><th align="center">MAE</th>
+      <th align="center">RMSE</th><th align="center">MAE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="5" align="center">PEMS<br>03</td>
+      <td align="center">12</td>
+      <td align="center">26.1</td><td align="center">15.4</td>
+      <td align="center">36.4</td><td align="center">22.2</td>
+      <td align="center">40.8</td><td align="center">26.1</td>
+      <td align="center">33.4</td><td align="center">22.4</td>
+      <td align="center">27.3</td><td align="center">17.3</td>
+    </tr>
+    <tr>
+      <td align="center">24</td>
+      <td align="center">28.9</td><td align="center">17.2</td>
+      <td align="center">38.5</td><td align="center">23.9</td>
+      <td align="center">54.0</td><td align="center">29.5</td>
+      <td align="center">37.3</td><td align="center">25.1</td>
+      <td align="center">33.9</td><td align="center">21.5</td>
+    </tr>
+    <tr>
+      <td align="center">48</td>
+      <td align="center">32.8</td><td align="center">19.7</td>
+      <td align="center">43.2</td><td align="center">26.5</td>
+      <td align="center">60.3</td><td align="center">36.9</td>
+      <td align="center">44.8</td><td align="center">30.3</td>
+      <td align="center">44.7</td><td align="center">28.7</td>
+    </tr>
+    <tr>
+      <td align="center">96</td>
+      <td align="center">39.0</td><td align="center">22.8</td>
+      <td align="center">48.5</td><td align="center">29.1</td>
+      <td align="center">73.0</td><td align="center">45.3</td>
+      <td align="center">57.3</td><td align="center">38.5</td>
+      <td align="center">50.1</td><td align="center">31.3</td>
+    </tr>
+    <tr>
+      <td align="center">Avg</td>
+      <td align="center">31.7</td><td align="center">18.7</td>
+      <td align="center">41.7</td><td align="center">25.4</td>
+      <td align="center">57.0</td><td align="center">34.4</td>
+      <td align="center">43.2</td><td align="center">29.1</td>
+      <td align="center">39.0</td><td align="center">24.7</td>
+    </tr>
 
-| Dataset | Horizon | HG-GFNO RMSE | HG-GFNO MAE | Informer RMSE | Informer MAE | Autoformer RMSE | Autoformer MAE | FEDformer RMSE | FEDformer MAE | iTransformer RMSE | iTransformer MAE |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| PEMS03 | 12  | 26.1 | 15.4 | 36.4 | 22.2 | 40.8 | 26.1 | 33.4 | 22.4 | 27.3 | 17.3 |
-| PEMS03 | 24  | 28.9 | 17.2 | 38.5 | 23.9 | 54.0 | 29.5 | 37.3 | 25.1 | 33.9 | 21.5 |
-| PEMS03 | 48  | 32.8 | 19.7 | 43.2 | 26.5 | 60.3 | 36.9 | 44.8 | 30.3 | 44.7 | 28.7 |
-| PEMS03 | 96  | 39.0 | 22.8 | 48.5 | 29.1 | 73.0 | 45.3 | 57.3 | 38.5 | 50.1 | 31.3 |
-| PEMS03 | Avg | 31.7 | 18.7 | 41.7 | 25.4 | 57.0 | 34.4 | 43.2 | 29.1 | 39.0 | 24.7 |
-| PEMS04 | 12  | 31.1 | 19.1 | 40.5 | 25.6 | 45.2 | 30.7 | 42.9 | 29.3 | 36.8 | 23.3 |
-| PEMS04 | 24  | 33.0 | 20.4 | 41.7 | 26.5 | 50.1 | 34.8 | 50.5 | 32.0 | 40.3 | 26.3 |
-| PEMS04 | 48  | 35.7 | 22.1 | 42.6 | 27.4 | 60.1 | 41.4 | 54.1 | 38.0 | 47.1 | 31.0 |
-| PEMS04 | 96  | 38.1 | 23.9 | 42.8 | 27.6 | 65.9 | 49.1 | 70.1 | 50.6 | 53.1 | 35.2 |
-| PEMS04 | Avg | 34.4 | 21.3 | 41.9 | 26.8 | 55.4 | 39.0 | 54.7 | 37.5 | 44.3 | 29.0 |
-| PEMS07 | 12  | 34.1 | 20.7 | 57.4 | 33.8 | 56.2 | 38.1 | 43.1 | 29.1 | 38.1 | 24.8 |
-| PEMS07 | 24  | 37.43 | 22.6 | 58.8 | 35.8 | 67.0 | 46.1 | 50.9 | 33.7 | 45.0 | 29.6 |
-| PEMS07 | 48  | 41.5 | 25.0 | 60.1 | 36.5 | 70.0 | 48.2 | 57.3 | 38.7 | 54.8 | 36.2 |
-| PEMS07 | 96  | 45.57 | 27.2 | 61.2 | 37.3 | 84.4 | 61.1 | 66.6 | 44.3 | 64.9 | 43.3 |
-| PEMS07 | Avg | 39.6 | 23.8 | 59.4 | 35.7 | 69.4 | 48.4 | 55.2 | 37.0 | 50.7 | 33.6 |
-| PEMS08 | 12  | 24.8 | 15.4 | 46.6 | 29.2 | 41.6 | 28.6 | 36.6 | 25.0 | 28.7 | 18.0 |
-| PEMS08 | 24  | 27.7 | 17.3 | 52.4 | 32.3 | 47.2 | 36.6 | 38.2 | 27.0 | 35.7 | 22.6 |
-| PEMS08 | 48  | 30.5 | 19.2 | 57.3 | 37.3 | 67.8 | 40.0 | 48.1 | 32.1 | 48.6 | 31.7 |
-| PEMS08 | 96  | 33.6 | 21.1 | 60.6 | 38.1 | 79.5 | 51.3 | 62.4 | 44.2 | 57.1 | 38.7 |
-| PEMS08 | Avg | 29.15 | 18.2 | 54.2 | 34.2 | 63.2 | 39.4 | 48.1 | 33.6 | 42.5 | 27.8 |
+    <tr>
+      <td rowspan="5" align="center">PEMS<br>04</td>
+      <td align="center">12</td>
+      <td align="center">31.1</td><td align="center">19.1</td>
+      <td align="center">40.5</td><td align="center">25.6</td>
+      <td align="center">45.2</td><td align="center">30.7</td>
+      <td align="center">42.9</td><td align="center">29.3</td>
+      <td align="center">36.8</td><td align="center">23.3</td>
+    </tr>
+    <tr>
+      <td align="center">24</td>
+      <td align="center">33.0</td><td align="center">20.4</td>
+      <td align="center">41.7</td><td align="center">26.5</td>
+      <td align="center">50.1</td><td align="center">34.8</td>
+      <td align="center">50.5</td><td align="center">32.0</td>
+      <td align="center">40.3</td><td align="center">26.3</td>
+    </tr>
+    <tr>
+      <td align="center">48</td>
+      <td align="center">35.7</td><td align="center">22.1</td>
+      <td align="center">42.6</td><td align="center">27.4</td>
+      <td align="center">60.1</td><td align="center">41.4</td>
+      <td align="center">54.1</td><td align="center">38.0</td>
+      <td align="center">47.1</td><td align="center">31.0</td>
+    </tr>
+    <tr>
+      <td align="center">96</td>
+      <td align="center">38.1</td><td align="center">23.9</td>
+      <td align="center">42.8</td><td align="center">27.6</td>
+      <td align="center">65.9</td><td align="center">49.1</td>
+      <td align="center">70.1</td><td align="center">50.6</td>
+      <td align="center">53.1</td><td align="center">35.2</td>
+    </tr>
+    <tr>
+      <td align="center">Avg</td>
+      <td align="center">34.4</td><td align="center">21.3</td>
+      <td align="center">41.9</td><td align="center">26.8</td>
+      <td align="center">55.4</td><td align="center">39.0</td>
+      <td align="center">54.7</td><td align="center">37.5</td>
+      <td align="center">44.3</td><td align="center">29.0</td>
+    </tr>
 
-### Table 6. Performance comparison among Non-Transformer baselines (Linear, State Space, and Graph-based models)
+    <tr>
+      <td rowspan="5" align="center">PEMS<br>07</td>
+      <td align="center">12</td>
+      <td align="center">34.1</td><td align="center">20.7</td>
+      <td align="center">57.4</td><td align="center">33.8</td>
+      <td align="center">56.2</td><td align="center">38.1</td>
+      <td align="center">43.1</td><td align="center">29.1</td>
+      <td align="center">38.1</td><td align="center">24.8</td>
+    </tr>
+    <tr>
+      <td align="center">24</td>
+      <td align="center">37.43</td><td align="center">22.6</td>
+      <td align="center">58.8</td><td align="center">35.8</td>
+      <td align="center">67.0</td><td align="center">46.1</td>
+      <td align="center">50.9</td><td align="center">33.7</td>
+      <td align="center">45.0</td><td align="center">29.6</td>
+    </tr>
+    <tr>
+      <td align="center">48</td>
+      <td align="center">41.5</td><td align="center">25.0</td>
+      <td align="center">60.1</td><td align="center">36.5</td>
+      <td align="center">70.0</td><td align="center">48.2</td>
+      <td align="center">57.3</td><td align="center">38.7</td>
+      <td align="center">54.8</td><td align="center">36.2</td>
+    </tr>
+    <tr>
+      <td align="center">96</td>
+      <td align="center">45.57</td><td align="center">27.2</td>
+      <td align="center">61.2</td><td align="center">37.3</td>
+      <td align="center">84.4</td><td align="center">61.1</td>
+      <td align="center">66.6</td><td align="center">44.3</td>
+      <td align="center">64.9</td><td align="center">43.3</td>
+    </tr>
+    <tr>
+      <td align="center">Avg</td>
+      <td align="center">39.6</td><td align="center">23.8</td>
+      <td align="center">59.4</td><td align="center">35.7</td>
+      <td align="center">69.4</td><td align="center">48.4</td>
+      <td align="center">55.2</td><td align="center">37.0</td>
+      <td align="center">50.7</td><td align="center">33.6</td>
+    </tr>
 
-| Dataset | Horizon | HG-GFNO RMSE | HG-GFNO MAE | DLinear RMSE | DLinear MAE | MambaTS RMSE | MambaTS MAE | Minusformer RMSE | Minusformer MAE | MGCN RMSE | MGCN MAE |
-|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
-| PEMS03 | 12  | 26.1 | 15.4 | 40.9 | 26.8 | 26.2 | 16.6 | 25.9 | 16.4 | 29.5 | 16.9 |
-| PEMS03 | 24  | 28.9 | 17.2 | 50.7 | 33.5 | 32.0 | 20.1 | 31.3 | 19.8 | 32.2 | 19.2 |
-| PEMS03 | 48  | 32.8 | 19.7 | 64.3 | 38.3 | 41.7 | 26.4 | 41.2 | 26.0 | 38.7 | 22.9 |
-| PEMS03 | 96  | 39.0 | 22.8 | 75.5 | 52.2 | 51.2 | 33.4 | 50.2 | 32.4 | 42.3 | 25.2 |
-| PEMS03 | Avg | 31.7 | 18.7 | 57.9 | 38.9 | 37.8 | 24.1 | 37.2 | 23.7 | 35.7 | 21.1 |
-| PEMS04 | 12  | 31.1 | 19.1 | 55.9 | 38.2 | 35.9 | 22.5 | 35.3 | 22.2 | 31.8 | 19.7 |
-| PEMS04 | 24  | 33.0 | 20.4 | 64.5 | 44.7 | 43.4 | 27.6 | 42.2 | 26.8 | 34.3 | 21.6 |
-| PEMS04 | 48  | 35.7 | 22.1 | 77.0 | 53.8 | 54.2 | 35.1 | 53.8 | 34.8 | 37.2 | 23.4 |
-| PEMS04 | 96  | 38.1 | 23.9 | 85.8 | 61.2 | 66.7 | 44.5 | 64.7 | 41.9 | 39.7 | 25.1 |
-| PEMS04 | Avg | 34.4 | 21.3 | 70.8 | 49.5 | 50.1 | 32.4 | 49.0 | 31.4 | 35.8 | 22.5 |
-| PEMS07 | 12  | 34.1 | 20.7 | 55.1 | 38.6 | 37.4 | 23.3 | 36.6 | 22.6 | 35.1 | 21.8 |
-| PEMS07 | 24  | 37.43 | 22.6 | 70.2 | 49.8 | 44.6 | 28.4 | 43.7 | 27.1 | 38.1 | 23.6 |
-| PEMS07 | 48  | 41.5 | 25.0 | 82.8 | 56.5 | 57.1 | 38.7 | 54.8 | 34.4 | 48.2 | 26.6 |
-| PEMS07 | 96  | 45.57 | 27.2 | 90.5 | 79.8 | 68.2 | 45.0 | 68.8 | 44.6 | 47.8 | 30.2 |
-| PEMS07 | Avg | 39.6 | 23.8 | 74.7 | 58.7 | 51.8 | 33.9 | 51.0 | 32.1 | 41.0 | 25.6 |
-| PEMS08 | 12  | 24.8 | 15.4 | 47.0 | 32.6 | 27.4 | 17.1 | 27.0 | 16.1 | 24.8 | 15.4 |
-| PEMS08 | 24  | 27.7 | 17.3 | 54.1 | 38.0 | 33.2 | 20.6 | 32.6 | 20.5 | 27.6 | 17.2 |
-| PEMS08 | 48  | 30.5 | 19.2 | 67.8 | 48.1 | 41.8 | 26.4 | 42.5 | 27.2 | 31.3 | 19.7 |
-| PEMS08 | 96  | 33.6 | 21.1 | 77.3 | 56.3 | 51.0 | 33.3 | 52.8 | 34.1 | 34.0 | 21.4 |
-| PEMS08 | Avg | 29.15 | 18.2 | 61.5 | 43.8 | 38.4 | 24.4 | 38.7 | 24.7 | 29.4 | 18.4 |
+    <tr>
+      <td rowspan="5" align="center">PEMS<br>08</td>
+      <td align="center">12</td>
+      <td align="center">24.8</td><td align="center">15.4</td>
+      <td align="center">46.6</td><td align="center">29.2</td>
+      <td align="center">41.6</td><td align="center">28.6</td>
+      <td align="center">36.6</td><td align="center">25.0</td>
+      <td align="center">28.7</td><td align="center">18.0</td>
+    </tr>
+    <tr>
+      <td align="center">24</td>
+      <td align="center">27.7</td><td align="center">17.3</td>
+      <td align="center">52.4</td><td align="center">32.3</td>
+      <td align="center">47.2</td><td align="center">36.6</td>
+      <td align="center">38.2</td><td align="center">27.0</td>
+      <td align="center">35.7</td><td align="center">22.6</td>
+    </tr>
+    <tr>
+      <td align="center">48</td>
+      <td align="center">30.5</td><td align="center">19.2</td>
+      <td align="center">57.3</td><td align="center">37.3</td>
+      <td align="center">67.8</td><td align="center">40.0</td>
+      <td align="center">48.1</td><td align="center">32.1</td>
+      <td align="center">48.6</td><td align="center">31.7</td>
+    </tr>
+    <tr>
+      <td align="center">96</td>
+      <td align="center">33.6</td><td align="center">21.1</td>
+      <td align="center">60.6</td><td align="center">38.1</td>
+      <td align="center">79.5</td><td align="center">51.3</td>
+      <td align="center">62.4</td><td align="center">44.2</td>
+      <td align="center">57.1</td><td align="center">38.7</td>
+    </tr>
+    <tr>
+      <td align="center">Avg</td>
+      <td align="center">29.15</td><td align="center">18.2</td>
+      <td align="center">54.2</td><td align="center">34.2</td>
+      <td align="center">63.2</td><td align="center">39.4</td>
+      <td align="center">48.1</td><td align="center">33.6</td>
+      <td align="center">42.5</td><td align="center">27.8</td>
+    </tr>
+  </tbody>
+</table>
 
+<div align="center"><b>Table 5. Performance comparison among Transformer-based models</b></div>
+
+<br>
+
+<table border="1" cellspacing="0" cellpadding="4">
+  <thead>
+    <tr>
+      <th rowspan="2" align="center">Dataset</th>
+      <th rowspan="2" align="center">Metric</th>
+      <th colspan="2" align="center">HG-GFNO (proposed model)</th>
+      <th colspan="2" align="center">Dlinear (2023)</th>
+      <th colspan="2" align="center">MambaTS (2024)</th>
+      <th colspan="2" align="center">Minusformer (2024)</th>
+      <th colspan="2" align="center">MGCN (2025)</th>
+    </tr>
+    <tr>
+      <th align="center">RMSE</th><th align="center">MAE</th>
+      <th align="center">RMSE</th><th align="center">MAE</th>
+      <th align="center">RMSE</th><th align="center">MAE</th>
+      <th align="center">RMSE</th><th align="center">MAE</th>
+      <th align="center">RMSE</th><th align="center">MAE</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="5" align="center">PEMS<br>03</td>
+      <td align="center">12</td>
+      <td align="center">26.1</td><td align="center">15.4</td>
+      <td align="center">40.9</td><td align="center">26.8</td>
+      <td align="center">26.2</td><td align="center">16.6</td>
+      <td align="center">25.9</td><td align="center">16.4</td>
+      <td align="center">29.5</td><td align="center">16.9</td>
+    </tr>
+    <tr>
+      <td align="center">24</td>
+      <td align="center">28.9</td><td align="center">17.2</td>
+      <td align="center">50.7</td><td align="center">33.5</td>
+      <td align="center">32.0</td><td align="center">20.1</td>
+      <td align="center">31.3</td><td align="center">19.8</td>
+      <td align="center">32.2</td><td align="center">19.2</td>
+    </tr>
+    <tr>
+      <td align="center">48</td>
+      <td align="center">32.8</td><td align="center">19.7</td>
+      <td align="center">64.3</td><td align="center">38.3</td>
+      <td align="center">41.7</td><td align="center">26.4</td>
+      <td align="center">41.2</td><td align="center">26.0</td>
+      <td align="center">38.7</td><td align="center">22.9</td>
+    </tr>
+    <tr>
+      <td align="center">96</td>
+      <td align="center">39.0</td><td align="center">22.8</td>
+      <td align="center">75.5</td><td align="center">52.2</td>
+      <td align="center">51.2</td><td align="center">33.4</td>
+      <td align="center">50.2</td><td align="center">32.4</td>
+      <td align="center">42.3</td><td align="center">25.2</td>
+    </tr>
+    <tr>
+      <td align="center">Avg</td>
+      <td align="center">31.7</td><td align="center">18.7</td>
+      <td align="center">57.9</td><td align="center">38.9</td>
+      <td align="center">37.8</td><td align="center">24.1</td>
+      <td align="center">37.2</td><td align="center">23.7</td>
+      <td align="center">35.7</td><td align="center">21.1</td>
+    </tr>
+
+    <tr>
+      <td rowspan="5" align="center">PEMS<br>04</td>
+      <td align="center">12</td>
+      <td align="center">31.1</td><td align="center">19.1</td>
+      <td align="center">55.9</td><td align="center">38.2</td>
+      <td align="center">35.9</td><td align="center">22.5</td>
+      <td align="center">35.3</td><td align="center">22.2</td>
+      <td align="center">31.8</td><td align="center">19.7</td>
+    </tr>
+    <tr>
+      <td align="center">24</td>
+      <td align="center">33.0</td><td align="center">20.4</td>
+      <td align="center">64.5</td><td align="center">44.7</td>
+      <td align="center">43.4</td><td align="center">27.6</td>
+      <td align="center">42.2</td><td align="center">26.8</td>
+      <td align="center">34.3</td><td align="center">21.6</td>
+    </tr>
+    <tr>
+      <td align="center">48</td>
+      <td align="center">35.7</td><td align="center">22.1</td>
+      <td align="center">77.0</td><td align="center">53.8</td>
+      <td align="center">54.2</td><td align="center">35.1</td>
+      <td align="center">53.8</td><td align="center">34.8</td>
+      <td align="center">37.2</td><td align="center">23.4</td>
+    </tr>
+    <tr>
+      <td align="center">96</td>
+      <td align="center">38.1</td><td align="center">23.9</td>
+      <td align="center">85.8</td><td align="center">61.2</td>
+      <td align="center">66.7</td><td align="center">44.5</td>
+      <td align="center">64.7</td><td align="center">41.9</td>
+      <td align="center">39.7</td><td align="center">25.1</td>
+    </tr>
+    <tr>
+      <td align="center">Avg</td>
+      <td align="center">34.4</td><td align="center">21.3</td>
+      <td align="center">70.8</td><td align="center">49.5</td>
+      <td align="center">50.1</td><td align="center">32.4</td>
+      <td align="center">49.0</td><td align="center">31.4</td>
+      <td align="center">35.8</td><td align="center">22.5</td>
+    </tr>
+
+    <tr>
+      <td rowspan="5" align="center">PEMS<br>07</td>
+      <td align="center">12</td>
+      <td align="center">34.1</td><td align="center">20.7</td>
+      <td align="center">55.1</td><td align="center">38.6</td>
+      <td align="center">37.4</td><td align="center">23.3</td>
+      <td align="center">36.6</td><td align="center">22.6</td>
+      <td align="center">35.1</td><td align="center">21.8</td>
+    </tr>
+    <tr>
+      <td align="center">24</td>
+      <td align="center">37.43</td><td align="center">22.6</td>
+      <td align="center">70.2</td><td align="center">49.8</td>
+      <td align="center">44.6</td><td align="center">28.4</td>
+      <td align="center">43.7</td><td align="center">27.1</td>
+      <td align="center">38.1</td><td align="center">23.6</td>
+    </tr>
+    <tr>
+      <td align="center">48</td>
+      <td align="center">41.5</td><td align="center">25.0</td>
+      <td align="center">82.8</td><td align="center">56.5</td>
+      <td align="center">57.1</td><td align="center">38.7</td>
+      <td align="center">54.8</td><td align="center">34.4</td>
+      <td align="center">48.2</td><td align="center">26.6</td>
+    </tr>
+    <tr>
+      <td align="center">96</td>
+      <td align="center">45.57</td><td align="center">27.2</td>
+      <td align="center">90.5</td><td align="center">79.8</td>
+      <td align="center">68.2</td><td align="center">45.0</td>
+      <td align="center">68.8</td><td align="center">44.6</td>
+      <td align="center">47.8</td><td align="center">30.2</td>
+    </tr>
+    <tr>
+      <td align="center">Avg</td>
+      <td align="center">39.6</td><td align="center">23.8</td>
+      <td align="center">74.7</td><td align="center">58.7</td>
+      <td align="center">51.8</td><td align="center">33.9</td>
+      <td align="center">51.0</td><td align="center">32.1</td>
+      <td align="center">41.0</td><td align="center">25.6</td>
+    </tr>
+
+    <tr>
+      <td rowspan="5" align="center">PEMS<br>08</td>
+      <td align="center">12</td>
+      <td align="center">24.8</td><td align="center">15.4</td>
+      <td align="center">47.0</td><td align="center">32.6</td>
+      <td align="center">27.4</td><td align="center">17.1</td>
+      <td align="center">27.0</td><td align="center">16.1</td>
+      <td align="center">24.8</td><td align="center">15.4</td>
+    </tr>
+    <tr>
+      <td align="center">24</td>
+      <td align="center">27.7</td><td align="center">17.3</td>
+      <td align="center">54.1</td><td align="center">38.0</td>
+      <td align="center">33.2</td><td align="center">20.6</td>
+      <td align="center">32.6</td><td align="center">20.5</td>
+      <td align="center">27.6</td><td align="center">17.2</td>
+    </tr>
+    <tr>
+      <td align="center">48</td>
+      <td align="center">30.5</td><td align="center">19.2</td>
+      <td align="center">67.8</td><td align="center">48.1</td>
+      <td align="center">41.8</td><td align="center">26.4</td>
+      <td align="center">42.5</td><td align="center">27.2</td>
+      <td align="center">31.3</td><td align="center">19.7</td>
+    </tr>
+    <tr>
+      <td align="center">96</td>
+      <td align="center">33.6</td><td align="center">21.1</td>
+      <td align="center">77.3</td><td align="center">56.3</td>
+      <td align="center">51.0</td><td align="center">33.3</td>
+      <td align="center">52.8</td><td align="center">34.1</td>
+      <td align="center">34.0</td><td align="center">21.4</td>
+    </tr>
+    <tr>
+      <td align="center">Avg</td>
+      <td align="center">29.15</td><td align="center">18.2</td>
+      <td align="center">61.5</td><td align="center">43.8</td>
+      <td align="center">38.4</td><td align="center">24.4</td>
+      <td align="center">38.7</td><td align="center">24.7</td>
+      <td align="center">29.4</td><td align="center">18.4</td>
+    </tr>
+  </tbody>
+</table>
+
+<div align="center"><b>Table 6. Performance comparison among Non-Transformer baselines (Linear, State Space, and Graph-based models)</b></div>
 
 ---
 
